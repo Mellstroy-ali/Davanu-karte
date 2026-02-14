@@ -1,0 +1,154 @@
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #222;
+    --primary: #6c63ff;
+    --success: #2ecc71;
+    --error: #e74c3c;
+}
+
+body.dark {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: #fff;
+    --primary: #8b7dff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: var(--card);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart {
+    font-weight: bold;
+    background: var(--primary);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.product-card {
+    background: var(--card);
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.price-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.price-btn {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    cursor: pointer;
+}
+
+.price-btn.active,
+.price-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.buy-btn, .checkout-btn, .pay-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    background: #27ae60;
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* 💳 Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    position: relative;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 📱 Mobile */
+@media (max-width: 500px) {
+    .product-card {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
