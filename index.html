@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dāvanu kartes veikals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>🎁 GiftStore</h2>
+
+    <div class="nav-right">
+        <div class="cart">
+            🛍️ <span id="cartCount">0</span>
+        </div>
+        <button id="themeToggle">🌙</button>
+    </div>
+</header>
+
+<main class="container">
+    <div class="product-card">
+        <h1>Dāvanu karte</h1>
+        <p>Izvēlies summu un uzdāvini prieku.</p>
+
+        <div class="price-options">
+            <button class="price-btn" data-value="10">10€</button>
+            <button class="price-btn" data-value="25">25€</button>
+            <button class="price-btn" data-value="50">50€</button>
+            <button class="price-btn" data-value="100">100€</button>
+        </div>
+
+        <input type="number" id="customAmount" placeholder="Vai ievadi savu summu (min 10€)">
+
+        <button id="buyBtn" class="buy-btn">🛒 Pievienot grozam</button>
+        <button id="checkoutBtn" class="checkout-btn">💳 Veikt apmaksu</button>
+
+        <div id="result" class="result"></div>
+    </div>
+</main>
+
+<!-- 💳 Checkout Modal -->
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>Maksājuma informācija</h2>
+
+        <p>Kopējā summa: <strong id="totalAmount">0€</strong></p>
+
+        <input type="text" id="cardName" placeholder="Kartes īpašnieka vārds">
+        <input type="text" id="cardNumber" placeholder="Kartes numurs (16 cipari)">
+        <input type="text" id="cardExpiry" placeholder="MM/YY">
+        <input type="text" id="cardCVC" placeholder="CVC">
+
+        <button id="payBtn" class="pay-btn">Apmaksāt</button>
+
+        <div id="paymentResult"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
