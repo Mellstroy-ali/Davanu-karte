@@ -1,71 +1,201 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dāvanu kartes iegāde</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dāvanu Karte — Ideāla dāvana vienā mirklī</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .heading {
+      font-family: 'Playfair Display', sans-serif;
+    }
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, #ff8a65, #f06292, #ba68c8);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-zinc-100">
 
-    <!-- 🎁 Hero Section -->
-    <section class="hero">
-        <h1>🎁 Ideālā dāvanu karte jebkuram gadījumam</h1>
-        <p>Personalizē dāvanu, izvēlies dizainu un nosūti digitāli.</p>
-    </section>
-
-    <!-- 🛍 Main Product Section -->
-    <div class="container">
-        <h1>Dāvanu kartes iegāde</h1>
-
-        <p>
-            Izvēlies dāvanu kartes summu un iegādājies to tiešsaistē. 
-            Minimālā summa ir 10 €.
-        </p>
-
-        <label for="amount">Ievadi summu (€):</label>
-        <input type="number" id="amount" placeholder="Piemēram, 25">
-
-        <button id="buyBtn">Iegādāties</button>
-
-        <p id="result"></p>
-
-        <!-- 🎨 Papildu funkcijas -->
-        <div class="extras">
-
-            <label for="designSelect">🎨 Izvēlies dizainu:</label>
-            <select id="designSelect">
-                <option value="Klasiska">Klasiska</option>
-                <option value="Dzimšanas diena">Dzimšanas diena</option>
-                <option value="Svētku">Svētku</option>
-            </select>
-
-            <label for="recipientName">👤 Saņēmēja vārds:</label>
-            <input type="text" id="recipientName" placeholder="Ievadi vārdu">
-
-            <label for="recipientEmail">📧 Saņēmēja e-pasts:</label>
-            <input type="email" id="recipientEmail" placeholder="example@email.com">
-
-            <label for="promoCode">🏷️ Promo kods:</label>
-            <input type="text" id="promoCode" placeholder="SALE10">
-
-            <button id="clearCartBtn">🗑️ Notīrīt grozu</button>
-
+  <!-- Hero -->
+  <header class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="heading text-6xl md:text-7xl font-bold leading-tight mb-6">
+            Dāvini to, kas<br>paliks atmiņā
+          </h1>
+          <p class="text-xl text-zinc-200 mb-10 max-w-lg">
+            Skaistas digitālās dāvanu kartes ar tūlītēju piegādi un personisku dizainu.
+          </p>
+          <button onclick="document.getElementById('amount-section').scrollIntoView({ behavior: 'smooth' })" 
+                  class="bg-white text-black font-semibold text-lg px-10 py-5 rounded-2xl hover:bg-amber-300 transition-all flex items-center gap-3">
+            Izvēlēties summu
+            <i class="fas fa-arrow-down"></i>
+          </button>
         </div>
+        <div class="relative">
+          <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20">
+            <img src="https://picsum.photos/id/1015/600/380" alt="Dāvanu karte" 
+                 class="rounded-2xl shadow-xl">
+            <div class="mt-6 text-center">
+              <p class="text-sm text-zinc-300">Dāvanu kartes piemērs</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <!-- ⭐ Features -->
-    <section class="features">
-        <div class="feature-box">⚡ Ātra piegāde</div>
-        <div class="feature-box">🔒 Drošs maksājums</div>
-        <div class="feature-box">💌 Personalizācija</div>
-    </section>
+  <!-- Summas izvēle -->
+  <section id="amount-section" class="py-24 bg-zinc-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="heading text-5xl font-bold text-center mb-4">Izvēlies summu</h2>
+      <p class="text-center text-zinc-400 mb-12">Jebkura summa no 5€ līdz 500€</p>
 
-    <!-- 📌 Footer -->
-    <footer class="footer">
-        <p>© 2026 GiftStore | Premium dāvanu kartes</p>
-    </footer>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="amount-cards">
+        <!-- Summas ģenerējas ar JavaScript -->
+      </div>
 
-    <script src="script.js"></script>
+      <div class="mt-12 max-w-md mx-auto">
+        <label class="block text-sm font-medium mb-3">Vai ievadi savu summu</label>
+        <div class="flex">
+          <span class="bg-zinc-800 px-6 flex items-center rounded-l-2xl text-xl">€</span>
+          <input type="number" id="custom-amount" 
+                 class="flex-1 bg-zinc-800 text-2xl px-6 py-6 rounded-r-2xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+                 placeholder="50" min="5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personalizācija -->
+  <section class="py-24 bg-black">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <!-- Kreisā puse - forma -->
+        <div>
+          <h2 class="heading text-5xl font-bold mb-10">Personalizē dāvanu karti</h2>
+          
+          <div class="space-y-8">
+            <div>
+              <label class="block text-sm mb-2">Saņēmēja vārds</label>
+              <input type="text" id="recipient" 
+                     class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-5 focus:outline-none focus:border-orange-500 text-lg"
+                     placeholder="Anna">
+            </div>
+
+            <div>
+              <label class="block text-sm mb-2">Vēstule / novēlējums</label>
+              <textarea id="message" rows="4"
+                        class="w-full bg-zinc-900 border border-zinc-700 rounded-3xl px-6 py-5 focus:outline-none focus:border-orange-500 resize-none"
+                        placeholder="Novēlu Tev skaistu un siltu dienu!"></textarea>
+            </div>
+
+            <button onclick="addToCart()" 
+                    class="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 transition-all font-semibold text-xl py-7 rounded-3xl">
+              Pievienot grozam
+            </button>
+          </div>
+        </div>
+
+        <!-- Labā puse - priekšskatījums -->
+        <div class="bg-zinc-900 rounded-3xl p-10 border border-zinc-800">
+          <h3 class="text-2xl font-semibold mb-8">Priekšskatījums</h3>
+          <div id="preview-card" 
+               class="bg-gradient-to-br from-rose-400 via-orange-400 to-amber-400 h-96 rounded-3xl p-10 flex flex-col justify-between shadow-inner relative overflow-hidden">
+            <div class="text-black">
+              <p class="text-sm opacity-75">Dāvanu karte</p>
+              <p id="preview-amount" class="text-6xl font-bold mt-2">50€</p>
+            </div>
+            <div>
+              <p class="font-medium" id="preview-recipient">Saņēmējs: Anna</p>
+              <p id="preview-message" class="text-sm mt-3 line-clamp-3 opacity-90">
+                Novēlu Tev skaistu un siltu dienu!
+              </p>
+            </div>
+            <div class="absolute bottom-8 right-8 text-xs opacity-60">davanukarte.lv</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-950 py-16 border-t border-zinc-800">
+    <div class="max-w-6xl mx-auto px-6 text-center text-zinc-500">
+      <p>&copy; 2026 Dāvanu Karte. Visas tiesības aizsargātas.</p>
+    </div>
+  </footer>
+
+  <script>
+    const amounts = [10, 25, 50, 75, 100, 150, 200];
+
+    function createAmountCards() {
+      const container = document.getElementById('amount-cards');
+      container.innerHTML = '';
+
+      amounts.forEach(amount => {
+        const isPopular = amount === 50 || amount === 100;
+        const card = document.createElement('div');
+        card.className = `bg-zinc-800 rounded-3xl p-8 text-center cursor-pointer card-hover ${isPopular ? 'ring-2 ring-orange-500' : ''}`;
+        card.innerHTML = `
+          <p class="text-5xl font-bold mb-2">${amount}€</p>
+          ${isPopular ? '<span class="text-xs bg-orange-500 text-black px-4 py-1 rounded-full">Populārākā</span>' : ''}
+        `;
+        card.onclick = () => {
+          document.getElementById('custom-amount').value = amount;
+          updatePreview();
+        };
+        container.appendChild(card);
+      });
+    }
+
+    function updatePreview() {
+      const amount = document.getElementById('custom-amount').value || '50';
+      const recipient = document.getElementById('recipient').value || 'Dārgais draugs';
+      const message = document.getElementById('message').value || 'Ar vislabākajiem novēlējumiem!';
+
+      document.getElementById('preview-amount').textContent = amount + '€';
+      document.getElementById('preview-recipient').textContent = 'Saņēmējs: ' + recipient;
+      document.getElementById('preview-message').textContent = message;
+    }
+
+    function addToCart() {
+      const amount = document.getElementById('custom-amount').value;
+      if (!amount) {
+        alert('Lūdzu, izvēlies dāvanas summu');
+        return;
+      }
+      alert(`✅ Dāvanu karte ${amount}€ pievienota grozam!`);
+      // Šeit vēlāk būs groza loģika
+    }
+
+    // Iniciālie dati
+    window.onload = () => {
+      createAmountCards();
+      
+      const inputs = ['custom-amount', 'recipient', 'message'];
+      inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updatePreview);
+      });
+
+      updatePreview();
+    };
+  </script>
 </body>
 </html>
