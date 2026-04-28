@@ -5,9 +5,8 @@ let selectedDesign = 1;
 const designColors = {
   1: "linear-gradient(135deg, #f43f5e, #fb923c)",
   2: "linear-gradient(135deg, #6366f1, #a855f7)",
-  3: "linear-gradient(135deg, #14b8a6, #67e8f9)",
-  4: "linear-gradient(135deg, #eab308, #f97316)",
-  5: "linear-gradient(135deg, #8b5cf6, #ec4899)"   // jauns 5. variants
+  3: "linear-gradient(135deg, #14b8a6, #22d3ee)",
+  4: "linear-gradient(135deg, #eab308, #f97316)"
 };
 
 function toggleTheme() {
@@ -30,15 +29,12 @@ function toggleTheme() {
 }
 
 function loadTheme() {
-  const saved = localStorage.getItem('theme');
-  const icon = document.getElementById('theme-icon');
-
-  if (saved === 'dark') {
+  if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
-    icon.classList.add('fa-moon');
+    document.getElementById('theme-icon').classList.add('fa-moon');
   } else {
     document.body.classList.add('light');
-    icon.classList.add('fa-sun');
+    document.getElementById('theme-icon').classList.add('fa-sun');
   }
 }
 
@@ -63,7 +59,7 @@ function renderDesignOptions() {
   const container = document.getElementById('design-options');
   container.innerHTML = '';
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 4; i++) {
     const option = document.createElement('div');
     option.className = `design-option ${selectedDesign === i ? 'active' : ''}`;
     option.style.background = designColors[i];
@@ -85,16 +81,16 @@ function updatePreview() {
   preview.style.background = designColors[selectedDesign];
 
   preview.innerHTML = `
-    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black; position: relative; z-index: 2;">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black;">
       <div>
-        <p style="opacity: 0.9; font-size: 1.05rem;">Dāvanu karte</p>
-        <p style="font-size: 4.2rem; font-weight: 700; margin-top: 12px;">${amount}€</p>
+        <p style="opacity: 0.85;">Dāvanu karte</p>
+        <p style="font-size: 4rem; font-weight: 700; margin-top: 10px;">${amount}€</p>
       </div>
       <div>
-        <p style="font-size: 1.45rem; font-weight: 600;">${name}</p>
-        <p style="margin-top: 16px; line-height: 1.45; font-size: 1.05rem;">${message}</p>
+        <p style="font-size: 1.4rem; font-weight: 600;">${name}</p>
+        <p style="margin-top: 15px; line-height: 1.5;">${message}</p>
       </div>
-      <div style="text-align: right; font-size: 0.95rem; opacity: 0.8;">davanukarte.lv</div>
+      <div style="text-align: right; opacity: 0.75;">davanukarte.lv</div>
     </div>
   `;
 }
@@ -106,24 +102,60 @@ function addToCart() {
     return;
   }
 
-  cart.push({ amount, recipient: document.getElementById('recipient-name').value || "Dārgais draugs" });
+  cart.push({
+    id: Date.now(),
+    amount: amount,
+    recipient: document.getElementById('recipient-name').value || "Dārgais draugs",
+    message: document.getElementById('message').value
+  });
+
   updateCartCount();
-  alert(`${amount}€ dāvanu karte veiksmīgi pievienota grozam!`);
+  alert(`${amount}€ karte pievienota grozam!`);
 }
 
-function addCustomToCart() { addToCart(); }
+function addCustomToCart() {
+  addToCart();
+}
 
 function updateCartCount() {
   document.getElementById('cart-count').textContent = cart.length;
 }
 
-// Vienkārša modāļu funkcionalitāte
 function showCart() {
   document.getElementById('cart-modal').style.display = 'flex';
+  renderCart();
 }
 
 function closeCart() {
   document.getElementById('cart-modal').style.display = 'none';
+}
+
+function renderCart() {
+  // Vienkāršota versija demonstrācijai
+  document.getElementById('cart-items').innerHTML = `<p style="padding: 40px; text-align: center; color: #888;">Groza funkcionalitāte (pilna versija nākamajā iterācijā)</p>`;
+}
+
+function proceedToCheckout() {
+  closeCart();
+  document.getElementById('checkout-modal').style.display = 'flex';
+}
+
+function closeCheckout() {
+  document.getElementById('checkout-modal').style.display = 'none';
+}
+
+function formatCardNumber(input) {
+  let value = input.value.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
+  input.value = value;
+}
+
+function processPayment() {
+  closeCheckout();
+  document.getElementById('success-screen').classList.remove('hidden');
+}
+
+function restartSite() {
+  location.reload();
 }
 
 // Inicializācija
@@ -136,9 +168,7 @@ window.onload = () => {
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
   document.getElementById('cart-btn').addEventListener('click', showCart);
 
-  // Reāllaika priekšskatījums
   ['custom-amount', 'recipient-name', 'message'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', updatePreview);
+    document.getElementById(id).addEventListener('input', updatePreview);
   });
 };
