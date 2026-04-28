@@ -2,12 +2,12 @@
 let cart = [];
 let selectedDesign = 1;
 
-// Krāsu gradienti dažādiem dizainiem
 const designColors = {
-  1: "linear-gradient(135deg, #f43f5e, #fb923c)",   // Sarkans-oranžs
-  2: "linear-gradient(135deg, #6366f1, #a855f7)",   // Zils-violets
-  3: "linear-gradient(135deg, #14b8a6, #22d3ee)",   // Tirkīza
-  4: "linear-gradient(135deg, #eab308, #f97316)"    // Zeltaini oranžs
+  1: "linear-gradient(135deg, #f43f5e, #fb923c)",
+  2: "linear-gradient(135deg, #6366f1, #a855f7)",
+  3: "linear-gradient(135deg, #14b8a6, #67e8f9)",
+  4: "linear-gradient(135deg, #eab308, #f97316)",
+  5: "linear-gradient(135deg, #8b5cf6, #ec4899)"   // jauns 5. variants
 };
 
 function toggleTheme() {
@@ -63,7 +63,7 @@ function renderDesignOptions() {
   const container = document.getElementById('design-options');
   container.innerHTML = '';
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 5; i++) {
     const option = document.createElement('div');
     option.className = `design-option ${selectedDesign === i ? 'active' : ''}`;
     option.style.background = designColors[i];
@@ -85,16 +85,16 @@ function updatePreview() {
   preview.style.background = designColors[selectedDesign];
 
   preview.innerHTML = `
-    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black;">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black; position: relative; z-index: 2;">
       <div>
-        <p style="opacity: 0.85;">Dāvanu karte</p>
-        <p style="font-size: 3.8rem; font-weight: 700; margin-top: 10px;">${amount}€</p>
+        <p style="opacity: 0.9; font-size: 1.05rem;">Dāvanu karte</p>
+        <p style="font-size: 4.2rem; font-weight: 700; margin-top: 12px;">${amount}€</p>
       </div>
       <div>
-        <p style="font-size: 1.35rem; font-weight: 600;">${name}</p>
-        <p style="margin-top: 14px; line-height: 1.5;">${message}</p>
+        <p style="font-size: 1.45rem; font-weight: 600;">${name}</p>
+        <p style="margin-top: 16px; line-height: 1.45; font-size: 1.05rem;">${message}</p>
       </div>
-      <div style="text-align: right; font-size: 0.9rem; opacity: 0.75;">davanukarte.lv</div>
+      <div style="text-align: right; font-size: 0.95rem; opacity: 0.8;">davanukarte.lv</div>
     </div>
   `;
 }
@@ -106,44 +106,24 @@ function addToCart() {
     return;
   }
 
-  cart.push({
-    amount: amount,
-    recipient: document.getElementById('recipient-name').value || "Dārgais draugs"
-  });
-
+  cart.push({ amount, recipient: document.getElementById('recipient-name').value || "Dārgais draugs" });
   updateCartCount();
-  alert(`${amount}€ dāvanu karte pievienota grozam!`);
+  alert(`${amount}€ dāvanu karte veiksmīgi pievienota grozam!`);
 }
 
-function addCustomToCart() {
-  addToCart();
-}
+function addCustomToCart() { addToCart(); }
 
 function updateCartCount() {
   document.getElementById('cart-count').textContent = cart.length;
 }
 
-function closeCart() { document.getElementById('cart-modal').style.display = 'none'; }
-function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
-
-function proceedToCheckout() {
-  closeCart();
-  document.getElementById('checkout-modal').style.display = 'flex';
+// Vienkārša modāļu funkcionalitāte
+function showCart() {
+  document.getElementById('cart-modal').style.display = 'flex';
 }
 
-function formatCardNumber(input) {
-  let val = input.value.replace(/\s/g, '');
-  val = val.replace(/(\d{4})/g, '$1 ').trim();
-  input.value = val;
-}
-
-function processPayment() {
-  closeCheckout();
-  document.getElementById('success-screen').classList.remove('hidden');
-}
-
-function restartSite() {
-  location.reload();
+function closeCart() {
+  document.getElementById('cart-modal').style.display = 'none';
 }
 
 // Inicializācija
@@ -154,11 +134,11 @@ window.onload = () => {
   updatePreview();
 
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-  document.getElementById('cart-btn').addEventListener('click', () => {
-    document.getElementById('cart-modal').style.display = 'flex';
-  });
+  document.getElementById('cart-btn').addEventListener('click', showCart);
 
+  // Reāllaika priekšskatījums
   ['custom-amount', 'recipient-name', 'message'].forEach(id => {
-    document.getElementById(id).addEventListener('input', updatePreview);
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updatePreview);
   });
 };
