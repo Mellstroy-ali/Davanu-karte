@@ -1,4 +1,3 @@
-/* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 
 * {
@@ -9,85 +8,23 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0a0a0a;
-  color: #f1f1f1;
   line-height: 1.6;
-  transition: background-color 0.3s;
+  transition: background-color 0.4s, color 0.4s;
 }
 
-.heading {
-  font-family: 'Playfair Display', sans-serif;
+/* ==================== GAISĀ TĒMA (uzlabota) ==================== */
+body.light {
+  background-color: #f8f9fc;
+  color: #1e2937;
 }
 
-/* NAVIGĀCIJA */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #27272a;
-  z-index: 1000;
+body.light .navbar {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.2rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #fb923c;
-}
-
-.logo i {
-  font-size: 2rem;
-}
-
-.nav-right {
-  display: flex;
-  gap: 15px;
-}
-
-.icon-btn {
-  background: none;
-  border: none;
-  color: #e4e4e7;
-  font-size: 1.6rem;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-
-.icon-btn:hover {
-  background: #27272a;
-  color: #fb923c;
-}
-
-.cart-count {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: #f97316;
-  color: white;
-  font-size: 0.75rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-}
+body.light .logo { color: #f97316; }
 
 /* HERO */
 .hero {
@@ -98,37 +35,33 @@ body {
   justify-content: center;
   text-align: center;
   position: relative;
+  color: white;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 20px;
+  background: rgba(0, 0, 0, 0.28);
 }
 
 .heading {
+  font-family: 'Playfair Display', sans-serif;
   font-size: 4.5rem;
-  line-height: 1.1;
+  line-height: 1.05;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .hero-subtitle {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   margin-bottom: 2.5rem;
-  opacity: 0.95;
 }
 
+/* Pogām */
 .btn-primary {
-  background: white;
-  color: black;
+  background: #f97316;
+  color: white;
   border: none;
   padding: 16px 40px;
   font-size: 1.2rem;
@@ -136,188 +69,16 @@ body {
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .btn-primary:hover {
+  background: #ea580c;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
-/* SEKCIJAS */
-.section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 20px;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
-  font-weight: 700;
-}
-
-.amount-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
-}
-
-.amount-card {
-  background: #18181b;
-  border: 2px solid #27272a;
-  border-radius: 20px;
-  padding: 30px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.4s;
-}
-
-.amount-card:hover {
-  border-color: #fb923c;
-  transform: translateY(-10px);
-}
-
-.amount-card.popular {
-  border-color: #fb923c;
-  position: relative;
-}
-
-.amount-card.popular::after {
-  content: "Populārākā";
-  position: absolute;
-  top: -12px;
-  right: 20px;
-  background: #fb923c;
-  color: black;
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.amount-card h3 {
-  font-size: 2.8rem;
-  margin-bottom: 8px;
-}
-
-/* PERSONALIZĀCIJA */
-.personalization-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 16px 20px;
-  background: #18181b;
-  border: 2px solid #3f3f46;
-  border-radius: 16px;
-  color: white;
-  font-size: 1.05rem;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #fb923c;
-  outline: none;
-}
-
-.design-options {
-  display: flex;
-  gap: 12px;
-}
-
-.design-option {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: 3px solid transparent;
-  transition: all 0.3s;
-}
-
-.design-option.active {
-  border-color: #fb923c;
-  transform: scale(1.1);
-}
-
-.preview-container h3 {
-  margin-bottom: 15px;
-  font-size: 1.4rem;
-}
-
-.preview-card {
-  height: 420px;
-  background: linear-gradient(135deg, #f43f5e, #f59e0b);
-  border-radius: 24px;
-  padding: 40px;
-  color: black;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* MODĀĻI */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.modal-content {
-  background: #18181b;
-  border-radius: 24px;
-  width: 90%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow: hidden;
-}
-
-.modal-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid #3f3f46;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #a1a1aa;
-  cursor: pointer;
-}
-
-/* Papildu stili grozam, checkout un success-screen būs script.js failā pievienoti dinamiski */
 
 .btn-secondary {
-  background: #27272a;
+  background: #64748b;
   color: white;
   border: none;
   padding: 14px 24px;
@@ -325,18 +86,105 @@ body {
   cursor: pointer;
 }
 
-.w-full {
-  width: 100%;
+/* Sekcijas */
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
 }
 
-/* RESPONSĪVS */
-@media (max-width: 768px) {
-  .personalization-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .heading {
-    font-size: 3.2rem;
-  }
+/* Summu kartītes */
+.amount-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.amount-card:hover {
+  border-color: #f97316;
+  transform: translateY(-12px);
+  box-shadow: 0 15px 30px rgba(249, 115, 22, 0.15);
+}
+
+.amount-card.popular {
+  border-color: #f97316;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+}
+
+/* Forma */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: white;
+  border: 2px solid #cbd5e1;
+  border-radius: 16px;
+  font-size: 1.05rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+/* Priekšskatījums */
+.preview-card {
+  height: 420px;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+  background: linear-gradient(135deg, #fb923c, #f43f5e);
+}
+
+/* Modālie logi */
+.modal-content {
+  background: white;
+  color: #1e2937;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Tumšā tēma */
+body.dark {
+  background-color: #0a0a0a;
+  color: #f1f1f1;
+}
+
+body.dark .navbar {
+  background: rgba(10, 10, 10, 0.97);
+  border-bottom: 1px solid #27272a;
+}
+
+body.dark .amount-card {
+  background: #18181b;
+  border-color: #27272a;
+}
+
+body.dark .form-group input,
+body.dark .form-group textarea {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #f1f1f1;
+}
+
+body.dark .modal-content {
+  background: #18181b;
+  color: #f1f1f1;
 }
