@@ -2,12 +2,12 @@
 let cart = [];
 let selectedDesign = 1;
 
-// Цвета для разных дизайнов
+// Krāsu gradienti dažādiem dizainiem
 const designColors = {
-  1: "linear-gradient(135deg, #f43f5e, #fb923c)",   // Красный-оранжевый
-  2: "linear-gradient(135deg, #6366f1, #a855f7)",   // Индиго-фиолетовый
-  3: "linear-gradient(135deg, #14b8a6, #22d3ee)",   // Бирюзовый
-  4: "linear-gradient(135deg, #eab308, #f97316)"    // Золотой-оранжевый
+  1: "linear-gradient(135deg, #f43f5e, #fb923c)",   // Sarkans-oranžs
+  2: "linear-gradient(135deg, #6366f1, #a855f7)",   // Zils-violets
+  3: "linear-gradient(135deg, #14b8a6, #22d3ee)",   // Tirkīza
+  4: "linear-gradient(135deg, #eab308, #f97316)"    // Zeltaini oranžs
 };
 
 function toggleTheme() {
@@ -42,7 +42,6 @@ function loadTheme() {
   }
 }
 
-// Рендер сумм
 function renderAmountCards() {
   const container = document.getElementById('amount-grid');
   container.innerHTML = '';
@@ -60,7 +59,6 @@ function renderAmountCards() {
   });
 }
 
-// Рендер выбора дизайна
 function renderDesignOptions() {
   const container = document.getElementById('design-options');
   container.innerHTML = '';
@@ -78,20 +76,18 @@ function renderDesignOptions() {
   }
 }
 
-// Живой предпросмотр карточки
 function updatePreview() {
   const amount = document.getElementById('custom-amount').value || 50;
   const name = document.getElementById('recipient-name').value || "Dārgais draugs";
   const message = document.getElementById('message').value || "Ar vislabākajiem novēlējumiem!";
 
   const preview = document.getElementById('preview-card');
-  
   preview.style.background = designColors[selectedDesign];
-  
+
   preview.innerHTML = `
-    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black; font-weight: 500;">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black;">
       <div>
-        <p style="opacity: 0.85; font-size: 1rem;">Dāvanu karte</p>
+        <p style="opacity: 0.85;">Dāvanu karte</p>
         <p style="font-size: 3.8rem; font-weight: 700; margin-top: 10px;">${amount}€</p>
       </div>
       <div>
@@ -103,7 +99,6 @@ function updatePreview() {
   `;
 }
 
-// Добавление в корзину
 function addToCart() {
   const amount = parseFloat(document.getElementById('custom-amount').value);
   if (!amount || amount < 5) {
@@ -111,17 +106,47 @@ function addToCart() {
     return;
   }
 
-  cart.push({ amount, recipient: document.getElementById('recipient-name').value || "Dārgais draugs" });
+  cart.push({
+    amount: amount,
+    recipient: document.getElementById('recipient-name').value || "Dārgais draugs"
+  });
+
   updateCartCount();
   alert(`${amount}€ dāvanu karte pievienota grozam!`);
 }
 
-function addCustomToCart() { addToCart(); }
+function addCustomToCart() {
+  addToCart();
+}
+
 function updateCartCount() {
   document.getElementById('cart-count').textContent = cart.length;
 }
 
-// Инициализация
+function closeCart() { document.getElementById('cart-modal').style.display = 'none'; }
+function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
+
+function proceedToCheckout() {
+  closeCart();
+  document.getElementById('checkout-modal').style.display = 'flex';
+}
+
+function formatCardNumber(input) {
+  let val = input.value.replace(/\s/g, '');
+  val = val.replace(/(\d{4})/g, '$1 ').trim();
+  input.value = val;
+}
+
+function processPayment() {
+  closeCheckout();
+  document.getElementById('success-screen').classList.remove('hidden');
+}
+
+function restartSite() {
+  location.reload();
+}
+
+// Inicializācija
 window.onload = () => {
   loadTheme();
   renderAmountCards();
@@ -129,9 +154,10 @@ window.onload = () => {
   updatePreview();
 
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-  document.getElementById('cart-btn').addEventListener('click', () => alert("Grozs tiks pilnveidots nākamajā versijā"));
+  document.getElementById('cart-btn').addEventListener('click', () => {
+    document.getElementById('cart-modal').style.display = 'flex';
+  });
 
-  // Обновление предпросмотра при вводе текста
   ['custom-amount', 'recipient-name', 'message'].forEach(id => {
     document.getElementById(id).addEventListener('input', updatePreview);
   });
