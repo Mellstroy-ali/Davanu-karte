@@ -16,7 +16,7 @@
         <span>Dāvanu Karte</span>
       </div>
       <div class="nav-right">
-        <button id="theme-toggle" class="icon-btn" aria-label="Mainīt motīvu">
+        <button id="theme-toggle" class="icon-btn">
           <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
         <button id="cart-btn" class="icon-btn relative">
@@ -58,7 +58,6 @@
     <section class="section">
       <h2 class="section-title">Personalizē dāvanu karti</h2>
       <div class="personalization-grid">
-        <!-- Forma -->
         <div class="form-container">
           <div class="form-group">
             <label>Saņēmēja vārds</label>
@@ -71,7 +70,7 @@
           </div>
 
           <div class="form-group">
-            <label>Izvēlies dizainu</label>
+            <label>Izvēlies kartes krāsu un dizainu</label>
             <div class="design-options" id="design-options"></div>
           </div>
 
@@ -87,7 +86,7 @@
     </section>
   </main>
 
-  <!-- GROZS -->
+  <!-- GROZS MODĀLIS -->
   <div id="cart-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -95,22 +94,19 @@
         <button onclick="closeCart()" class="close-btn">✕</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      
       <div class="cart-footer">
         <div class="total">
           <span>Kopā:</span>
           <span id="cart-total">0.00€</span>
         </div>
-        <input type="text" id="promo-code" placeholder="Promo kods" class="promo-input">
-        <button onclick="applyPromoCode()" class="btn-secondary">Lietot kodu</button>
         <button onclick="proceedToCheckout()" class="btn-primary w-full">Turpināt uz apmaksu</button>
       </div>
     </div>
   </div>
 
-  <!-- CHECKOUT -->
+  <!-- CHECKOUT MODĀLIS -->
   <div id="checkout-modal" class="modal">
-    <div class="modal-content checkout-content">
+    <div class="modal-content">
       <div class="modal-header">
         <h3>Maksājuma informācija</h3>
         <button onclick="closeCheckout()" class="close-btn">✕</button>
