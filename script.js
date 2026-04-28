@@ -2,6 +2,14 @@
 let cart = [];
 let selectedDesign = 1;
 
+// Цвета для разных дизайнов
+const designColors = {
+  1: "linear-gradient(135deg, #f43f5e, #fb923c)",   // Красный-оранжевый
+  2: "linear-gradient(135deg, #6366f1, #a855f7)",   // Индиго-фиолетовый
+  3: "linear-gradient(135deg, #14b8a6, #22d3ee)",   // Бирюзовый
+  4: "linear-gradient(135deg, #eab308, #f97316)"    // Золотой-оранжевый
+};
+
 function toggleTheme() {
   const body = document.body;
   const icon = document.getElementById('theme-icon');
@@ -22,10 +30,10 @@ function toggleTheme() {
 }
 
 function loadTheme() {
-  const savedTheme = localStorage.getItem('theme');
+  const saved = localStorage.getItem('theme');
   const icon = document.getElementById('theme-icon');
 
-  if (savedTheme === 'dark') {
+  if (saved === 'dark') {
     document.body.classList.add('dark');
     icon.classList.add('fa-moon');
   } else {
@@ -34,14 +42,12 @@ function loadTheme() {
   }
 }
 
-// Суммы
-const amounts = [10, 25, 50, 75, 100, 150, 200];
-
+// Рендер сумм
 function renderAmountCards() {
   const container = document.getElementById('amount-grid');
   container.innerHTML = '';
 
-  amounts.forEach(amount => {
+  [10, 25, 50, 75, 100, 150, 200].forEach(amount => {
     const isPopular = amount === 50 || amount === 100;
     const card = document.createElement('div');
     card.className = `amount-card ${isPopular ? 'popular' : ''}`;
@@ -54,6 +60,7 @@ function renderAmountCards() {
   });
 }
 
+// Рендер выбора дизайна
 function renderDesignOptions() {
   const container = document.getElementById('design-options');
   container.innerHTML = '';
@@ -61,7 +68,7 @@ function renderDesignOptions() {
   for (let i = 1; i <= 4; i++) {
     const option = document.createElement('div');
     option.className = `design-option ${selectedDesign === i ? 'active' : ''}`;
-    option.style.background = `linear-gradient(135deg, hsl(${i*65}, 85%, 60%), hsl(${i*80}, 85%, 55%))`;
+    option.style.background = designColors[i];
     option.onclick = () => {
       selectedDesign = i;
       renderDesignOptions();
@@ -71,27 +78,32 @@ function renderDesignOptions() {
   }
 }
 
+// Живой предпросмотр карточки
 function updatePreview() {
   const amount = document.getElementById('custom-amount').value || 50;
   const name = document.getElementById('recipient-name').value || "Dārgais draugs";
   const message = document.getElementById('message').value || "Ar vislabākajiem novēlējumiem!";
 
   const preview = document.getElementById('preview-card');
+  
+  preview.style.background = designColors[selectedDesign];
+  
   preview.innerHTML = `
-    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black;">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black; font-weight: 500;">
       <div>
-        <p style="opacity: 0.8;">Dāvanu karte</p>
-        <p style="font-size: 3.5rem; font-weight: 700; margin-top: 8px;">${amount}€</p>
+        <p style="opacity: 0.85; font-size: 1rem;">Dāvanu karte</p>
+        <p style="font-size: 3.8rem; font-weight: 700; margin-top: 10px;">${amount}€</p>
       </div>
       <div>
-        <p style="font-weight: 600; font-size: 1.3rem;">${name}</p>
-        <p style="margin-top: 12px; font-size: 1rem;">${message}</p>
+        <p style="font-size: 1.35rem; font-weight: 600;">${name}</p>
+        <p style="margin-top: 14px; line-height: 1.5;">${message}</p>
       </div>
-      <div style="text-align: right; font-size: 0.85rem; opacity: 0.7;">davanukarte.lv</div>
+      <div style="text-align: right; font-size: 0.9rem; opacity: 0.75;">davanukarte.lv</div>
     </div>
   `;
 }
 
+// Добавление в корзину
 function addToCart() {
   const amount = parseFloat(document.getElementById('custom-amount').value);
   if (!amount || amount < 5) {
@@ -99,55 +111,14 @@ function addToCart() {
     return;
   }
 
-  cart.push({
-    id: Date.now(),
-    amount: amount,
-    recipient: document.getElementById('recipient-name').value || "Dārgais draugs"
-  });
-
+  cart.push({ amount, recipient: document.getElementById('recipient-name').value || "Dārgais draugs" });
   updateCartCount();
   alert(`${amount}€ dāvanu karte pievienota grozam!`);
 }
 
-function addCustomToCart() {
-  addToCart();
-}
-
+function addCustomToCart() { addToCart(); }
 function updateCartCount() {
   document.getElementById('cart-count').textContent = cart.length;
-}
-
-function showCart() {
-  document.getElementById('cart-modal').style.display = 'flex';
-  // Здесь можно расширить позже
-}
-
-function closeCart() {
-  document.getElementById('cart-modal').style.display = 'none';
-}
-
-function proceedToCheckout() {
-  closeCart();
-  document.getElementById('checkout-modal').style.display = 'flex';
-}
-
-function closeCheckout() {
-  document.getElementById('checkout-modal').style.display = 'none';
-}
-
-function formatCardNumber(input) {
-  let val = input.value.replace(/\s/g, '');
-  val = val.replace(/(\d{4})/g, '$1 ').trim();
-  input.value = val;
-}
-
-function processPayment() {
-  closeCheckout();
-  document.getElementById('success-screen').classList.remove('hidden');
-}
-
-function restartSite() {
-  location.reload();
 }
 
 // Инициализация
@@ -158,10 +129,10 @@ window.onload = () => {
   updatePreview();
 
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-  document.getElementById('cart-btn').addEventListener('click', showCart);
+  document.getElementById('cart-btn').addEventListener('click', () => alert("Grozs tiks pilnveidots nākamajā versijā"));
 
+  // Обновление предпросмотра при вводе текста
   ['custom-amount', 'recipient-name', 'message'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', updatePreview);
+    document.getElementById(id).addEventListener('input', updatePreview);
   });
 };
