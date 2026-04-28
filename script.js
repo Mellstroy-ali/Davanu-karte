@@ -2,7 +2,6 @@
 let cart = [];
 let selectedDesign = 1;
 
-// Переключение темы
 function toggleTheme() {
   const body = document.body;
   const icon = document.getElementById('theme-icon');
@@ -22,21 +21,20 @@ function toggleTheme() {
   }
 }
 
-// Загрузка сохранённой темы
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme');
   const icon = document.getElementById('theme-icon');
-  
-  if (savedTheme === 'light') {
-    document.body.classList.add('light');
-    icon.classList.add('fa-sun');
-  } else {
+
+  if (savedTheme === 'dark') {
     document.body.classList.add('dark');
     icon.classList.add('fa-moon');
+  } else {
+    document.body.classList.add('light');
+    icon.classList.add('fa-sun');
   }
 }
 
-// Остальной код (суммы, корзина, оплата и т.д.)
+// Суммы
 const amounts = [10, 25, 50, 75, 100, 150, 200];
 
 function renderAmountCards() {
@@ -79,7 +77,6 @@ function updatePreview() {
   const message = document.getElementById('message').value || "Ar vislabākajiem novēlējumiem!";
 
   const preview = document.getElementById('preview-card');
-  preview.style.background = `linear-gradient(135deg, #f43f5e, #f59e0b)`;
   preview.innerHTML = `
     <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: black;">
       <div>
@@ -105,8 +102,7 @@ function addToCart() {
   cart.push({
     id: Date.now(),
     amount: amount,
-    recipient: document.getElementById('recipient-name').value || "Dārgais draugs",
-    message: document.getElementById('message').value || ""
+    recipient: document.getElementById('recipient-name').value || "Dārgais draugs"
   });
 
   updateCartCount();
@@ -121,20 +117,13 @@ function updateCartCount() {
   document.getElementById('cart-count').textContent = cart.length;
 }
 
-// Модальные окна (cart, checkout, success)
 function showCart() {
   document.getElementById('cart-modal').style.display = 'flex';
-  renderCart();
+  // Здесь можно расширить позже
 }
 
 function closeCart() {
   document.getElementById('cart-modal').style.display = 'none';
-}
-
-function renderCart() { /* ... тот же код, что был раньше */ 
-  // (оставил упрощённо для экономии места)
-  const container = document.getElementById('cart-items');
-  container.innerHTML = '<p style="text-align:center; padding:20px;">Groza funkcionalitāte tiks pilnveidota</p>';
 }
 
 function proceedToCheckout() {
@@ -163,20 +152,16 @@ function restartSite() {
 
 // Инициализация
 window.onload = () => {
-  loadTheme();                    // Загружаем сохранённую тему
+  loadTheme();
   renderAmountCards();
   renderDesignOptions();
   updatePreview();
 
-  // Привязываем переключатель темы
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  document.getElementById('cart-btn').addEventListener('click', showCart);
 
-  // Реальное обновление превью при вводе
   ['custom-amount', 'recipient-name', 'message'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', updatePreview);
   });
-
-  // Открытие корзины
-  document.getElementById('cart-btn').addEventListener('click', showCart);
 };
