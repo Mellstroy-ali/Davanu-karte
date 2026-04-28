@@ -35,5 +35,4 @@ Davanu-karte/
 ├── script.js
 ├── README.md
 │
-└── docs/
-    └── dokumentacija.pdf
+└── dokumentacija.pdf
