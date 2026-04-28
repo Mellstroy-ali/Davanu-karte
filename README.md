@@ -1,11 +1,11 @@
-# 🎁 GiftStore – Dāvanu kartes iegādes platforma
+GiftStore – Dāvanu kartes iegādes platforma
 
-## 📌 Projekta apraksts
+Projekta apraksts
 GiftStore ir interaktīva tīmekļa vietne, kas izstrādāta ar HTML, CSS un JavaScript. Tā ļauj lietotājiem izvēlēties, personalizēt un iegādāties dāvanu kartes tiešsaistē.
 
----
 
-## 🚀 Galvenās funkcijas
+
+Galvenās funkcijas
 - Dāvanu kartes summas izvēle
 - Minimālās summas validācija
 - Personalizācija (dizains, saņēmējs)
@@ -16,9 +16,9 @@ GiftStore ir interaktīva tīmekļa vietne, kas izstrādāta ar HTML, CSS un Jav
 - Dark mode
 - Responsīvs dizains
 
----
 
-## 🛠️ Izmantotās tehnoloģijas
+
+Izmantotās tehnoloģijas
 - HTML5
 - CSS3
 - JavaScript
@@ -26,7 +26,7 @@ GiftStore ir interaktīva tīmekļa vietne, kas izstrādāta ar HTML, CSS un Jav
 
 ---
 
-## 📂 Projekta struktūra
+Projekta struktūra
 ```txt
 Davanu-karte/
 │
