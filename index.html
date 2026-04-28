@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-<body>
+<body class="light">
   <!-- NAVIGĀCIJA -->
   <nav class="navbar">
     <div class="nav-container">
@@ -16,8 +16,8 @@
         <span>Dāvanu Karte</span>
       </div>
       <div class="nav-right">
-        <button id="theme-toggle" class="icon-btn">
-          <i class="fa-solid fa-moon"></i>
+        <button id="theme-toggle" class="icon-btn" aria-label="Mainīt motīvu">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
         <button id="cart-btn" class="icon-btn relative">
           <i class="fa-solid fa-shopping-cart"></i>
@@ -58,7 +58,6 @@
     <section class="section">
       <h2 class="section-title">Personalizē dāvanu karti</h2>
       <div class="personalization-grid">
-        
         <!-- Forma -->
         <div class="form-container">
           <div class="form-group">
@@ -88,7 +87,7 @@
     </section>
   </main>
 
-  <!-- GROZS MODĀLIS -->
+  <!-- GROZS -->
   <div id="cart-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -109,7 +108,7 @@
     </div>
   </div>
 
-  <!-- CHECKOUT MODĀLIS -->
+  <!-- CHECKOUT -->
   <div id="checkout-modal" class="modal">
     <div class="modal-content checkout-content">
       <div class="modal-header">
@@ -117,7 +116,7 @@
         <button onclick="closeCheckout()" class="close-btn">✕</button>
       </div>
       <div class="checkout-form">
-        <input type="text" id="card-number" placeholder="Kartes numurs (1234 5678 9012 3456)" maxlength="19" onkeyup="formatCardNumber(this)">
+        <input type="text" id="card-number" placeholder="Kartes numurs" maxlength="19" onkeyup="formatCardNumber(this)">
         <div class="grid-2">
           <input type="text" id="expiry" placeholder="MM/GG" maxlength="5">
           <input type="text" id="cvv" placeholder="CVV" maxlength="4">
