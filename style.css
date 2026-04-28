@@ -8,90 +8,64 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
 }
 
-/* ==================== GAISĀ TĒMA (uzlabota) ==================== */
+/* GAISĀ TĒMA */
 body.light {
   background-color: #f8f9fc;
   color: #1e2937;
 }
 
 body.light .navbar {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.98);
   border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
-body.light .logo { color: #f97316; }
+/* TUMŠĀ TĒMA */
+body.dark {
+  background-color: #0a0a0a;
+  color: #f1f1f1;
+}
+
+body.dark .navbar {
+  background: rgba(10, 10, 10, 0.98);
+  border-bottom: 1px solid #27272a;
+}
 
 /* HERO */
 .hero {
   height: 100vh;
   background: linear-gradient(135deg, #f97316, #db2777, #7e22ce);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   position: relative;
-  color: white;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.28);
 }
 
 .heading {
   font-family: 'Playfair Display', sans-serif;
   font-size: 4.5rem;
   line-height: 1.05;
-  margin-bottom: 1rem;
   font-weight: 700;
 }
 
-.hero-subtitle {
-  font-size: 1.45rem;
-  margin-bottom: 2.5rem;
-}
-
-/* Pogām */
 .btn-primary {
   background: #f97316;
   color: white;
-  border: none;
   padding: 16px 40px;
   font-size: 1.2rem;
   font-weight: 600;
   border-radius: 9999px;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .btn-primary:hover {
   background: #ea580c;
-  transform: translateY(-3px);
-}
-
-.btn-secondary {
-  background: #64748b;
-  color: white;
-  border: none;
-  padding: 14px 24px;
-  border-radius: 9999px;
-  cursor: pointer;
-}
-
-/* Sekcijas */
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
-  font-weight: 700;
 }
 
 /* Summu kartītes */
@@ -103,73 +77,6 @@ body.light .logo { color: #f97316; }
   text-align: center;
   cursor: pointer;
   transition: all 0.4s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.amount-card:hover {
-  border-color: #f97316;
-  transform: translateY(-12px);
-  box-shadow: 0 15px 30px rgba(249, 115, 22, 0.15);
-}
-
-.amount-card.popular {
-  border-color: #f97316;
-  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
-}
-
-/* Forma */
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #334155;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 16px 20px;
-  background: white;
-  border: 2px solid #cbd5e1;
-  border-radius: 16px;
-  font-size: 1.05rem;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #f97316;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-}
-
-/* Priekšskatījums */
-.preview-card {
-  height: 420px;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: black;
-  background: linear-gradient(135deg, #fb923c, #f43f5e);
-}
-
-/* Modālie logi */
-.modal-content {
-  background: white;
-  color: #1e2937;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-}
-
-/* Tumšā tēma */
-body.dark {
-  background-color: #0a0a0a;
-  color: #f1f1f1;
-}
-
-body.dark .navbar {
-  background: rgba(10, 10, 10, 0.97);
-  border-bottom: 1px solid #27272a;
 }
 
 body.dark .amount-card {
@@ -177,11 +84,85 @@ body.dark .amount-card {
   border-color: #27272a;
 }
 
+.amount-card:hover {
+  transform: translateY(-12px);
+  border-color: #f97316;
+}
+
+/* Priekšskatījums */
+.preview-card {
+  height: 420px;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.5s ease;
+  color: black;
+}
+
+/* Forma */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 2px solid #cbd5e1;
+}
+
 body.dark .form-group input,
 body.dark .form-group textarea {
   background: #18181b;
   border-color: #3f3f46;
-  color: #f1f1f1;
+  color: white;
+}
+
+/* Dizaina izvēle */
+.design-options {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.design-option {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.design-option.active {
+  border-color: #f97316;
+  transform: scale(1.12);
+}
+
+/* Modālie logi */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 480px;
+  padding: 20px;
 }
 
 body.dark .modal-content {
