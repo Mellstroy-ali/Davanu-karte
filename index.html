@@ -3,97 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dāvanu kartes veikals</title>
+    <title>Dāvanu kartes iegāde</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="navbar">
-    <h2>🎁 GiftStore</h2>
+    <!-- 🎁 Hero Section -->
+    <section class="hero">
+        <h1>🎁 Ideālā dāvanu karte jebkuram gadījumam</h1>
+        <p>Personalizē dāvanu, izvēlies dizainu un nosūti digitāli.</p>
+    </section>
 
-    <div class="nav-right">
-        <div class="cart">
-            🛍️ <span id="cartCount">0</span>
+    <!-- 🛍 Main Product Section -->
+    <div class="container">
+        <h1>Dāvanu kartes iegāde</h1>
+
+        <p>
+            Izvēlies dāvanu kartes summu un iegādājies to tiešsaistē. 
+            Minimālā summa ir 10 €.
+        </p>
+
+        <label for="amount">Ievadi summu (€):</label>
+        <input type="number" id="amount" placeholder="Piemēram, 25">
+
+        <button id="buyBtn">Iegādāties</button>
+
+        <p id="result"></p>
+
+        <!-- 🎨 Papildu funkcijas -->
+        <div class="extras">
+
+            <label for="designSelect">🎨 Izvēlies dizainu:</label>
+            <select id="designSelect">
+                <option value="Klasiska">Klasiska</option>
+                <option value="Dzimšanas diena">Dzimšanas diena</option>
+                <option value="Svētku">Svētku</option>
+            </select>
+
+            <label for="recipientName">👤 Saņēmēja vārds:</label>
+            <input type="text" id="recipientName" placeholder="Ievadi vārdu">
+
+            <label for="recipientEmail">📧 Saņēmēja e-pasts:</label>
+            <input type="email" id="recipientEmail" placeholder="example@email.com">
+
+            <label for="promoCode">🏷️ Promo kods:</label>
+            <input type="text" id="promoCode" placeholder="SALE10">
+
+            <button id="clearCartBtn">🗑️ Notīrīt grozu</button>
+
         </div>
-        <button id="themeToggle">🌙</button>
     </div>
-</header>
 
-<main class="container">
-    <div class="product-card">
-        <h1>Dāvanu karte</h1>
-        <p>Izvēlies summu un uzdāvini prieku.</p>
+    <!-- ⭐ Features -->
+    <section class="features">
+        <div class="feature-box">⚡ Ātra piegāde</div>
+        <div class="feature-box">🔒 Drošs maksājums</div>
+        <div class="feature-box">💌 Personalizācija</div>
+    </section>
 
-        <div class="price-options">
-            <button class="price-btn" data-value="10">10€</button>
-            <button class="price-btn" data-value="25">25€</button>
-            <button class="price-btn" data-value="50">50€</button>
-            <button class="price-btn" data-value="100">100€</button>
-        </div>
+    <!-- 📌 Footer -->
+    <footer class="footer">
+        <p>© 2026 GiftStore | Premium dāvanu kartes</p>
+    </footer>
 
-        <input type="number" id="customAmount" placeholder="Vai ievadi savu summu (min 10€)">
-
-        <button id="buyBtn" class="buy-btn">🛒 Pievienot grozam</button>
-        <button id="checkoutBtn" class="checkout-btn">💳 Veikt apmaksu</button>
-
-        <div id="result" class="result"></div>
-    </div>
-</main>
-
-<!-- 💳 Checkout Modal -->
-<div id="checkoutModal" class="modal">
-    <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <h2>Maksājuma informācija</h2>
-
-        <p>Kopējā summa: <strong id="totalAmount">0€</strong></p>
-
-        <input type="text" id="cardName" placeholder="Kartes īpašnieka vārds">
-        <input type="text" id="cardNumber" placeholder="Kartes numurs (16 cipari)">
-        <input type="text" id="cardExpiry" placeholder="MM/YY">
-        <input type="text" id="cardCVC" placeholder="CVC">
-
-        <button id="payBtn" class="pay-btn">Apmaksāt</button>
-
-        <div id="paymentResult"></div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-<section class="hero">
-    <h1>🎁 Ideālā dāvanu karte jebkuram gadījumam</h1>
-    <p>Personalizē dāvanu, izvēlies dizainu un nosūti digitāli.</p>
-</section>
-
-<div class="extras">
-
-    <label>🎨 Izvēlies dizainu:</label>
-    <select id="designSelect">
-        <option value="Klasiska">Klasiska</option>
-        <option value="Dzimšanas diena">Dzimšanas diena</option>
-        <option value="Svētku">Svētku</option>
-    </select>
-
-    <label>👤 Saņēmēja vārds:</label>
-    <input type="text" id="recipientName" placeholder="Ievadi vārdu">
-
-    <label>📧 Saņēmēja e-pasts:</label>
-    <input type="email" id="recipientEmail" placeholder="example@email.com">
-
-    <label>🏷️ Promo kods:</label>
-    <input type="text" id="promoCode" placeholder="SALE10">
-
-    <button id="clearCartBtn" class="clear-btn">🗑️ Notīrīt grozu</button>
-</div>
-
-<section class="features">
-    <div>⚡ Ātra piegāde</div>
-    <div>🔒 Drošs maksājums</div>
-    <div>💌 Personalizācija</div>
-</section>
-
-<footer class="footer">
-    <p>© 2026 GiftStore | Premium dāvanu kartes</p>
-</footer>
