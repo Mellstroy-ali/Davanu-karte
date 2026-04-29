@@ -11,32 +11,43 @@ body {
   transition: all 0.4s ease;
 }
 
+/* GAISĀ TĒMA */
 body.light {
   background-color: #f8fafc;
   color: #1e2937;
 }
 
+body.light .navbar {
+  background: rgba(248, 250, 252, 0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* TUMŠĀ TĒMA */
 body.dark {
   background-color: #0a0a0a;
   color: #f1f1f1;
 }
 
-/* Navbar */
+body.dark .navbar {
+  background: rgba(10, 10, 10, 0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* NAVIGĀCIJA */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1.2rem 0;
+  padding: 1.4rem 0;
 }
 
-body.light .navbar { background: rgba(255,255,255,0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-body.dark .navbar { background: rgba(10,10,10,0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-
 .nav-container {
-  max-width: 1280px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,18 +56,18 @@ body.dark .navbar { background: rgba(10,10,10,0.95); box-shadow: 0 4px 20px rgba
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.9rem;
+  gap: 14px;
+  font-size: 2rem;
   font-weight: 700;
 }
 
 body.light .logo { color: #f97316; }
 body.dark .logo { color: #fb923c; }
 
-/* Hero */
+/* HERO */
 .hero {
   height: 100vh;
-  background: linear-gradient(135deg, #f97316, #db2777, #7e22ce);
+  background: linear-gradient(135deg, #f97316, #e11d48, #7e22ce);
   position: relative;
   display: flex;
   align-items: center;
@@ -68,68 +79,73 @@ body.dark .logo { color: #fb923c; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
 }
 
 .heading {
   font-family: 'Playfair Display', sans-serif;
-  font-size: 4.8rem;
+  font-size: 5.2rem;
   line-height: 1.05;
-  margin-bottom: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
+  font-size: 1.6rem;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  opacity: 0.95;
 }
 
-/* Buttons */
 .btn-primary {
   background: white;
   color: #1e2937;
-  padding: 18px 48px;
-  font-size: 1.25rem;
+  padding: 18px 52px;
+  font-size: 1.3rem;
   font-weight: 600;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.4s ease;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.3);
 }
 
-/* Pārējie stili (amount cards, preview, forma utt.) */
+/* Sekcijas */
 .section {
-  max-width: 1280px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 100px 2rem;
+  padding: 110px 2.5rem;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
+  font-size: 2.9rem;
+  margin-bottom: 3.5rem;
   font-weight: 700;
 }
 
+/* Amount Cards */
 .amount-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
 }
 
 .amount-card {
   background: white;
   border: 2px solid #e2e8f0;
-  border-radius: 24px;
-  padding: 35px 20px;
+  border-radius: 28px;
+  padding: 42px 20px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.4s;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 body.dark .amount-card {
@@ -138,37 +154,90 @@ body.dark .amount-card {
 }
 
 .amount-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-18px) scale(1.05);
   border-color: #f97316;
+  box-shadow: 0 25px 55px rgba(249, 115, 22, 0.25);
 }
 
+.amount-card.popular {
+  border-color: #f97316;
+  position: relative;
+}
+
+.amount-card.popular::after {
+  content: "Populārākā";
+  position: absolute;
+  top: -14px;
+  right: 25px;
+  background: #f97316;
+  color: white;
+  font-size: 0.85rem;
+  padding: 5px 16px;
+  border-radius: 30px;
+}
+
+/* Priekšskatījums */
 .preview-card {
-  height: 460px;
-  border-radius: 28px;
-  padding: 45px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  height: 480px;
+  border-radius: 32px;
+  padding: 50px 45px;
+  box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: background 0.5s;
+  transition: background 0.6s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), transparent);
+  pointer-events: none;
+}
+
+/* Forma un dizaina izvēle */
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 20px;
+  border: 2px solid #d1d5db;
+  font-size: 1.1rem;
+}
+
+body.dark .form-group input,
+body.dark .form-group textarea {
+  background: #1f2937;
+  border-color: #4b5563;
+  color: white;
 }
 
 .design-options {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 .design-option {
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
   cursor: pointer;
   border: 4px solid transparent;
-  transition: all 0.3s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 
 .design-option.active {
   border-color: #f97316;
-  transform: scale(1.1);
+  transform: scale(1.12);
 }
