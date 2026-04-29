@@ -29,10 +29,10 @@ Izmantotās tehnoloģijas
 Projekta struktūra
 ```txt
 Davanu-karte/
+
+├── README.md
 │
+└── dokumentacija.pdf│
 ├── index.html
 ├── style.css
 ├── script.js
-├── README.md
-│
-└── dokumentacija.pdf
