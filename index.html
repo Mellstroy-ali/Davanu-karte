@@ -31,11 +31,11 @@
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="heading">Ideāla dāvana<br>vienā klikšķī</h1>
-      <p class="hero-subtitle">Izvēlies summu, personalizē karti un dāvini skaistu digitālo dāvanu</p>
+      <h1 class="heading">Dāvini to, kas paliek atmiņā</h1>
+      <p class="hero-subtitle">Skaistas digitālās dāvanu kartes ar personisku novēlējumu</p>
       <button onclick="document.getElementById('amount-section').scrollIntoView({ behavior: 'smooth' })" 
               class="btn-primary">
-        Sākt dāvināšanu
+        Izvēlēties dāvanu
       </button>
     </div>
   </header>
@@ -67,7 +67,7 @@
           
           <div class="form-group">
             <label>Personīgs novēlējums</label>
-            <textarea id="message" rows="4" placeholder="Novēlu Tev daudz prieka un siltuma..."></textarea>
+            <textarea id="message" rows="4" placeholder="Novēlu Tev siltu un priecīgu dienu..."></textarea>
           </div>
 
           <div class="form-group">
@@ -99,8 +99,6 @@
           <span>Kopā:</span>
           <span id="cart-total">0.00 €</span>
         </div>
-        <input type="text" id="promo-code" placeholder="Promo kods" class="promo-input">
-        <button onclick="applyPromoCode()" class="btn-secondary">Lietot promo kodu</button>
         <button onclick="proceedToCheckout()" class="btn-primary w-full">Turpināt uz apmaksu</button>
       </div>
     </div>
